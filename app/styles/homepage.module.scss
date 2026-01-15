@@ -1,0 +1,44 @@
+.homeWrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    z-index: 2;
+    pointer-events: none;
+    top: 30vh;
+    left: 0;
+
+    > p {
+        margin: 0;
+        pointer-events: auto;
+        background-color: transparent;
+        font-size: 24px;
+    }
+    gap: 2rem
+}
+
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    padding-bottom: 20px;
+    pointer-events: auto;
+}
+
+.homeButton {
+    padding: 10px 5px 10px 5px;
+    border: 2px solid rgb(0, 0, 0);
+    height: fit-content;
+    cursor: pointer;
+    background-color: transparent;
+
+    p {
+        height: auto;
+        margin: 0;
+        font-size: 16px;
+    }
+}

@@ -1,65 +1,61 @@
-import Image from "next/image";
+"use client"
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import ModelShowcase from "./model-showcase";
+import styles from "./styles/homepage.module.scss"
+import { CameraControls, Gltf, OrbitControls, PerspectiveCamera, TrackballControls, useGLTF } from "@react-three/drei";
+import { useRef } from "react";
+import * as THREE from 'three';
+import { routeModule } from "next/dist/build/templates/pages";
+import { RouteKind } from "next/dist/server/route-kind";
+import { useRouter } from "next/navigation";
+import { preload } from "react-dom";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+useGLTF.preload('/Duck.glb')
+
+function CameraLogger() {
+  const { camera } = useThree();
+  const lastPosition = useRef({ x: 0, y: 0, z: 0 });
+
+  useFrame(() => {
+    const pos = camera.position;
+    // Only log if position has changed
+    if (
+      Math.abs(pos.x - lastPosition.current.x) > 0.01 ||
+      Math.abs(pos.y - lastPosition.current.y) > 0.01 ||
+      Math.abs(pos.z - lastPosition.current.z) > 0.01
+    ) {
+      console.log(`Camera position: [${pos.x.toFixed(2)}, ${pos.y.toFixed(2)}, ${pos.z.toFixed(2)}]`);
+      lastPosition.current = { x: pos.x, y: pos.y, z: pos.z };
+    }
+  });
+
+  return null;
 }
+
+export default function Page() {
+  const router = useRouter();
+return  <>
+  <Canvas className={styles.homepage} 
+            camera={{position:[6.65, 2.19, 4.15], fov: 50, near: 0.1, far: 100, zoom: 1.4}}
+            >
+            <ModelShowcase modelPath='/Duck.glb' />
+            <CameraLogger />
+            <TrackballControls
+            target={[0, 1, 0]}
+            staticMoving={false}
+            dynamicDampingFactor={0.1}
+            maxDistance={10}
+            panSpeed={0.1}
+            />
+        </Canvas>
+    <div className={styles.homeWrapper}>
+      <p>Hi, I&apos;m David!</p>
+        <div className={styles.buttonRow}>
+          <div className={styles.homeButton} onClick={() => router.push('/about')}><p>about_me</p></div>
+          <div className={styles.homeButton} onClick={() => router.push('/projects')}><p>projects</p></div>
+          <div className={styles.homeButton} onClick={() => router.push('/contact')}><p>contact</p></div>
+        </div>
+      </div>
+  </>
+}
+
