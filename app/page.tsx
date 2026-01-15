@@ -1,14 +1,10 @@
 "use client"
+import { TrackballControls, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import ModelShowcase from "./model-showcase";
-import styles from "./styles/homepage.module.scss"
-import { CameraControls, Gltf, OrbitControls, PerspectiveCamera, TrackballControls, useGLTF } from "@react-three/drei";
-import { useRef } from "react";
-import * as THREE from 'three';
-import { routeModule } from "next/dist/build/templates/pages";
-import { RouteKind } from "next/dist/server/route-kind";
 import { useRouter } from "next/navigation";
-import { preload } from "react-dom";
+import { useRef } from "react";
+import ModelShowcase from "./model-showcase";
+import styles from "./styles/homepage.module.scss";
 
 useGLTF.preload('/Duck.glb')
 

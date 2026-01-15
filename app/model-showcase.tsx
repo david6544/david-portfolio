@@ -1,11 +1,9 @@
 "use client";
 
+import { PointMaterial, Points, useGLTF } from '@react-three/drei';
+import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import styles from "./styles/homepage.module.scss";
-import { Canvas, ThreeElement, useFrame } from "@react-three/fiber";
-import {PointMaterial, Points, useGLTF} from '@react-three/drei'
-import * as THREE from 'three'
-import { vertexIndex } from "three/tsl";
+import * as THREE from 'three';
 
 const COUNT = 40000;
 const SCALE = 0.02; // Define scale as constant
