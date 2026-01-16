@@ -21,6 +21,30 @@
     gap: 2rem
 }
 
+/* Overlay containers used for About/Projects/Blog */
+.overlayContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlayContainerBlog {
+    z-index: 3;
+}
+
+.overlayContent {
+    pointer-events: auto;
+    padding: 2rem;
+    color: #000;
+}
+
 .buttonRow {
     display: flex;
     flex-direction: row;

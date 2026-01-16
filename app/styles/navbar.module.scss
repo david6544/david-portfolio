@@ -1,0 +1,39 @@
+
+.buttonCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 20px;
+    pointer-events: auto;
+    width: auto;
+    position: fixed;
+    z-index: 4;
+
+    p {
+        color: black;
+    }
+}
+
+
+
+.homeButton {
+    padding: 10px 5px 10px 5px;
+    border: 2px solid rgb(0, 0, 0);
+    height: fit-content;
+    cursor: pointer;
+    background-color: beige;
+    transition: all 0.3s ease-in-out;
+    
+    &:hover {
+        background-color: black;
+        p {
+            color: white;
+        }
+    }
+
+    p {
+        height: auto;
+        margin: 0;
+        font-size: 16px;
+    }
+}
