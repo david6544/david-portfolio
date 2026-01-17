@@ -79,11 +79,11 @@ return  <>
             <div className={styles.overlayContent}>
                 <AboutModal
                     name="David Maslov"
-                    description="I'm a software engineer with a passion for robotics, space, and anything low-level! Currently studying a Bachelor of Mechanical Engineering at Adelaide University and working as a software engineer @ Fivecast. \n\nWhen I'm not down a rabbit hole of code you can find me watching movies, out hiking or walking my dog. I also enjoy reading, writing and things literature! \n\nI'm currently looking for anything interesting to work on to develop my skills as a software engineer, feel free to to connect!"
+                    description="I'm a software engineer with a passion for robotics, space, and anything low-level! Currently studying a Bachelor of Mechanical Engineering at Adelaide University and working as a software engineer @ Fivecast. \n\nWhen I'm not down a rabbit hole of code you can find me watching movies, out hiking or walking my dog. I also enjoy reading, writing and all things literature! \n\nI'm currently looking for anything interesting to work on to develop my skills as a software engineer, feel free to to connect!"
                     modelPath="/Helmet/scene.gltf"
                     fields={{ 
                       Contact: 'maslov.david@outlook.com',
-                      Experience: 'C++, Java, TypeScript, React, Python, Three.js',
+                      Experience: 'C++, Java, TypeScript, React, Python',
                       Location: 'Adelaide, Australia' 
                     }}
                     links={{
