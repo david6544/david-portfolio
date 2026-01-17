@@ -16,8 +16,6 @@
     }
 }
 
-
-
 .homeButton {
     padding: 10px 5px 10px 5px;
     border: 2px solid white;
@@ -40,7 +38,6 @@
     }
 }
 
-/* Responsive: horizontal nav across the top on small screens */
 @media (max-width: 640px) {
     .buttonCol {
         flex-direction: row;

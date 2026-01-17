@@ -130,7 +130,7 @@ export default function ModelShowcase({
         }
 
         return sampled;
-    },[scene]);
+    },[points, scene]);
 
 
     useFrame((state, delta) => {

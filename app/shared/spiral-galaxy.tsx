@@ -95,8 +95,6 @@ export default function ProjectOrbit({ onSelect }: { onSelect?: (idx: number) =>
 
         for (let i = 0; i < POINT_COUNT; i++) {
             const i3 = i * 3
-
-            // assign to an arm so clusters represent projects
             const arm = i % armCount
 
             // radius distribution (more points near center) — slightly flatter to reduce extreme clustering
@@ -125,7 +123,6 @@ export default function ProjectOrbit({ onSelect }: { onSelect?: (idx: number) =>
         return { positions, colors }
     }, [])
 
-    // compute one position per project along the spiral arms
     const { projectPositions, projectBaseColors, projectSizes } = useMemo(() => {
         const projectPositions = new Array(projects.length).fill(0).map(() => new THREE.Vector3())
         const projectBaseColors = [] as [number, number, number][]
@@ -222,13 +219,10 @@ export default function ProjectOrbit({ onSelect }: { onSelect?: (idx: number) =>
         group.current.rotation.x = Math.sin(performance.now() / CONFIG.rotationOscillationPeriod) * CONFIG.rotationXAmplitude
     })
 
-    // Move camera back when the projects galaxy mounts, restore on unmount
-    // Center the camera while this starfield is mounted, restore on unmount
       const { camera } = useThree()
       useEffect(() => {
         const prevPos = camera.position.clone()
         const prevQuat = camera.quaternion.clone()
-        // place camera slightly away from origin so points are visible and not clipped
         camera.position.set(CONFIG.cameraX, CONFIG.cameraY, CONFIG.cameraZ);
         camera.lookAt(new THREE.Vector3(0, 0, 0))
         return () => {

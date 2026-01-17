@@ -185,8 +185,13 @@
     flex-direction: column;
     align-items: center;
     /* Keep the modal slightly narrower than the viewport on mobile */
-    width: min(94vw, 500px);
+    width: 86vw;
+    /* Allow the card to scroll when content exceeds viewport height */
+    max-height: 92vh;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
   }
+  
   .photoSlot {
     /* Make the showcase nearly as wide as the mobile screen
        while keeping a square aspect ratio so the model scales nicely. */

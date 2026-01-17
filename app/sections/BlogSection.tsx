@@ -18,10 +18,6 @@ export default function BlogSection() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [currentPost, setCurrentPost] = useState<BlogPost | undefined>();
 
-  // List of markdown files inside public/posts. If you add more .md files,
-  // add them here (they live in `/public/posts`). We intentionally fetch
-  // from the `public` folder so no API or extra routes are required.
-
   useEffect(() => {
     let mounted = true
 

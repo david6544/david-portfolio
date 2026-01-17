@@ -59,6 +59,14 @@
 
 }
 
+/* Reduce overlay horizontal padding on small screens (e.g. blog & about overlays) */
+@media (max-width: 640px) {
+    .overlayContent {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 .buttonRow {
     display: flex;
     flex-direction: row;
