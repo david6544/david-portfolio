@@ -7,7 +7,9 @@ body,
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* allow vertical page scrolling for long content (e.g. blog posts) */
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 100%;
   font-family: 'Courier New', monospace;
   color: white;
@@ -25,6 +27,6 @@ canvas {
   height: 100%;
   width: 100%;
   position: fixed;
-  background-color: beige;
+  background-color: black;
   z-index: 0;
 }

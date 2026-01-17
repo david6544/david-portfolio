@@ -1,0 +1,192 @@
+:root {
+  --card-bg: #0b0b10;
+  --muted: #9ca3af;
+}
+
+.container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.card {
+  position: relative;
+  z-index: 10001;
+  display: flex;
+  gap: 20px;
+  width: min(880px, 95%);
+  background: var(--card-bg);
+  color: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.photoSlot {
+  width: 25rem;
+  height: 25rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.desc {
+  margin: 8px 0 12px 0;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.fields {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+}
+
+.fieldKey {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.fieldVal {
+  font-size: 0.95rem;
+  color: white;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.primary {
+  background: transparent;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  padding: 8px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid white;
+  transition: background 160ms ease, color 160ms ease, transform 120ms ease;
+  cursor: pointer;
+}
+
+.primary:hover,
+.primary:focus {
+  color: white;
+  transform: translateY(-1px);
+  cursor: pointer;
+}
+
+.secondary {
+  background: transparent;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: background 140ms ease, transform 120ms ease;
+}
+
+.secondary:hover,
+.secondary:focus {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+}
+
+/* Social icon link styling */
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  width: 32px;
+  height: 32px;
+  color: white; /* SVGs use currentColor */
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 120ms ease, transform 120ms ease, opacity 120ms ease;
+  cursor: pointer;
+}
+
+.iconLink:hover,
+.iconLink:focus {
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* Ensure SVG icons inherit the white color and override embedded fills */
+.iconLink svg,
+.iconLink svg path {
+  color: inherit;
+  fill: currentColor !important;
+}
+
+.openButton {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+  }
+  .photoSlot {
+    width: 160px;
+    height: 180px;
+  }
+}

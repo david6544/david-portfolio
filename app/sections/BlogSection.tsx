@@ -9,7 +9,7 @@ import { remark } from 'remark'
 import html from 'remark-html'
 
 const POST_FILES = [
-    'hello-world.md',
+    'on-leadership.md',
     'project-notes.md',
 ]
 

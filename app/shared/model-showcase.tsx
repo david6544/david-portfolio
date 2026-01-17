@@ -58,8 +58,17 @@ function samplePoints(
 }
 
 export default function ModelShowcase({
-    modelPath, opacity = 1, ...props
-}: {modelPath : string, opacity?: number | SpringValue<number> }) {
+    modelPath, 
+    opacity = 1,
+    scale = SCALE,
+    points = COUNT,
+    ...props
+}: {
+    modelPath : string,
+    opacity?: number | SpringValue<number>,
+    scale?: number,
+    points?: number,
+}) {
     const ref = useRef<THREE.Points>(null!);
     const materialRef = useRef<THREE.PointsMaterial>(null!);
 
@@ -67,16 +76,31 @@ export default function ModelShowcase({
     
 
     const {positions, colors} = useMemo(() => {
+        // Merge positions from all mesh children so we sample the whole model,
+        // not just the last mesh (some GLTFs have many separate meshes).
         let geometry: THREE.BufferGeometry | null = null;
+        const allPositions: number[] = [];
 
         scene.traverse((child) => {
             if (child instanceof THREE.Mesh) {
-                geometry = child.geometry as THREE.BufferGeometry;
+                const g = child.geometry as THREE.BufferGeometry;
+                const pos = g.attributes.position as THREE.BufferAttribute | undefined;
+                if (pos && pos.array) {
+                    // pos.array may be a Float32Array or similar; copy values
+                    for (let i = 0; i < pos.array.length; i++) {
+                        allPositions.push(pos.array[i] as number);
+                    }
+                }
             }
         });
 
+        if (allPositions.length > 0) {
+            geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(allPositions), 3));
+        }
+
         // Sample raw points (we'll normalize per-model below)
-        const sampled = samplePoints(COUNT, 1, geometry);
+        const sampled = samplePoints(points, 1, geometry);
 
         // Normalize: center models and scale to a consistent size
         if (geometry) {
@@ -88,19 +112,20 @@ export default function ModelShowcase({
             const desiredSize = 130; // tune this value to change on-screen model size
             const modelScale = desiredSize / maxDim;
 
-            const minY = (bbox.min.y - center.y) * modelScale;
-            const maxY = (bbox.max.y - center.y) * modelScale;
-            const heightRange = maxY - minY || 1;
+            //const minY = (bbox.min.y - center.y) * modelScale;
+            //const maxY = (bbox.max.y - center.y) * modelScale;
+            //const heightRange = maxY - minY || 1;
 
             for (let i = 0; i < sampled.positions.length; i += 3) {
                 sampled.positions[i + 0] = (sampled.positions[i + 0] - center.x) * modelScale;
                 sampled.positions[i + 1] = (sampled.positions[i + 1] - center.y) * modelScale;
                 sampled.positions[i + 2] = (sampled.positions[i + 2] - center.z) * modelScale;
 
-                const normalizedHeight = (sampled.positions[i + 1] - minY) / heightRange;
-                sampled.colors[i + 0] = 0//normalizedHeight;
-                sampled.colors[i + 1] = 0//normalizedHeight * 0.2;
-                sampled.colors[i + 2] = 0//1 - normalizedHeight;
+                //const normalizedHeight = (sampled.positions[i + 1] - minY) / heightRange;
+                // use normalized white color values (1.0) for vertex colors
+                sampled.colors[i + 0] = 1.0;
+                sampled.colors[i + 1] = 1.0;
+                sampled.colors[i + 2] = 1.0;
             }
         }
 
@@ -114,7 +139,7 @@ export default function ModelShowcase({
         //ref.current.rotation.z += delta * Math.PI / 80;
     })
 
-    return <group scale={SCALE}>
+    return <group scale={scale}>
                 <AnimatedPoints ref={ref} positions={positions} stride={3} frustumCulled={false} {...props}>
                     <AnimatedPointMaterial 
                         ref={materialRef}

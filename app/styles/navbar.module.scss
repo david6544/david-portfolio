@@ -10,7 +10,7 @@
     z-index: 4;
 
     p {
-        color: black;
+        color: white;
     }
 }
 
@@ -18,16 +18,16 @@
 
 .homeButton {
     padding: 10px 5px 10px 5px;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid white;
     height: fit-content;
     cursor: pointer;
-    background-color: beige;
+    background-color: black;
     transition: all 0.3s ease-in-out;
     
     &:hover {
-        background-color: black;
+        background-color: white;
         p {
-            color: white;
+            color: black;
         }
     }
 

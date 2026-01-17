@@ -1,23 +1,24 @@
 "use client"
 
-import React, { useRef, useMemo, useEffect } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
-import * as THREE from 'three'
-import { Points, PointMaterial } from '@react-three/drei'
-import { animated } from '@react-spring/three'
 import type { SpringValue } from '@react-spring/three'
+import { animated } from '@react-spring/three'
+import { PointMaterial, Points } from '@react-three/drei'
+import { useFrame, useThree } from '@react-three/fiber'
+import { useEffect, useMemo, useRef } from 'react'
+import * as THREE from 'three'
 
 const AnimatedPoints = animated(Points)
 const AnimatedPointMaterial = animated(PointMaterial)
 
 export default function StarField({
-  count = 8000,
-  radius = 0.5,
+  count = 20000,
+  radius = 1,
   opacity = 1,
 }: {
   count?: number
   radius?: number
   opacity?: number | SpringValue<number>
+  speed?: number
 }) {
   const ref = useRef<THREE.Points>(null!)
 
@@ -35,12 +36,11 @@ export default function StarField({
 
   const colors = useMemo(() => {
     const c = new Float32Array(count * 3)
-    for (let i = 0; i < count * 3; i++) c[i] = 0
+    for (let i = 0; i < count * 3; i++) c[i] = 255;
     return c
   }, [count])
 
   useFrame((state, delta) => {
-    if (!ref.current) return
     ref.current.rotation.y += delta * 0.08
     ref.current.rotation.x += delta * 0.01
   })
@@ -64,11 +64,10 @@ export default function StarField({
       <AnimatedPointMaterial
         transparent
         vertexColors
-        size={0.013}
+        size={0.006}
         sizeAttenuation={true}
         depthWrite={false}
         opacity={opacity}
-        color={new THREE.Color('#ffffff')}
       />
       <bufferAttribute
         attach="geometry-attributes-color"

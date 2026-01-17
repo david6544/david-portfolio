@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     z-index: 2;
     pointer-events: none;
     top: 30vh;
@@ -41,8 +41,22 @@
 
 .overlayContent {
     pointer-events: auto;
-    padding: 2rem;
+    padding: 0rem 8rem 0rem 8rem;
     color: #000;
+    /* allow long overlay content to scroll while keeping header/footer fixed */
+    max-height: 85vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* hide visible scrollbars but preserve scrolling behavior */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+
+    &::-webkit-scrollbar {
+        display: none; /* Safari & Chrome */
+        width: 0;
+        height: 0;
+    }
+
 }
 
 .buttonRow {
@@ -55,15 +69,15 @@
 
 .homeButton {
     padding: 10px 5px 10px 5px;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
     height: fit-content;
     cursor: pointer;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
     
     &:hover {
-        background-color: black;
-        color: white
+        background-color: white;
+        color: black;
     }
 
     p {

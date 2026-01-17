@@ -1,0 +1,157 @@
+/* Styles for ProjectModal component */
+.container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.dialog {
+  position: relative;
+  z-index: 10000;
+  min-width: 320px;
+  /* Constrain modal width on large screens */
+  width: min(80%, 900px);
+  background: #0b0b10;
+  color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.description {
+  color: #ddd;
+  margin-top: 8px;
+}
+
+.actions {
+  margin-top: 12px;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 12px;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: #16161a;
+  margin-right: 8px;
+}
+
+.secondary {
+  background: #2a2a33;
+}
+
+/* Tech stack tags */
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.tag {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+/* Simple gallery */
+.gallery {
+  margin-top: 14px;
+}
+
+.mainImageWrapper {
+  width: 100%;
+  max-height: 360px;
+  height: 360px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #07070a;
+  border-radius: 6px;
+  position: relative;
+}
+
+.mainImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.thumbnailRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.thumbnail {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 64px;
+  height: 42px;
+  flex: 0 0 auto;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.activeThumbnail {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.12) inset;
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    width: calc(100% - 32px);
+    max-width: none;
+  }
+}
