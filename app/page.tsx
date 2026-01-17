@@ -3,7 +3,6 @@ import { useSpring } from "@react-spring/three";
 import { TrackballControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { create } from "zustand";
-import AboutSection from "./sections/AboutSection";
 import AboutModal from "./shared/AboutModal";
 import BlogSection from "./sections/BlogSection";
 import ModelShowcase from "./shared/model-showcase";
@@ -55,7 +54,7 @@ return  <>
               <ModelShowcase modelPath='/Duck.glb' opacity={duckOpacity} />
             }
             {currentView === "Blog" && (
-              <StarField opacity={cubeOpacity} speed={0.1}/>
+              <StarField opacity={cubeOpacity} speedX={0.01} speedY={0.02}/>
             )}
             { currentView === "Projects" &&
               <ProjectOrbit onSelect={(i) => setSelectedProject(i)} />

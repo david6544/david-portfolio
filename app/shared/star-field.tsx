@@ -78,7 +78,6 @@ export default function StarField({
         array={colors}
         itemSize={3}
         args={[colors, 3]}
-        args={[colors, 3]}
       />
     </AnimatedPoints>
   )
