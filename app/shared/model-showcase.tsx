@@ -7,7 +7,7 @@ import { a as animated } from '@react-spring/three';
 import { useMemo, useRef } from "react";
 import * as THREE from 'three';
 
-const COUNT = 50000; // Reduced from 5000 for better performance
+const COUNT = 80000; // Reduced for better performance
 const SCALE = 0.02; // Define scale as constant
 
 // Create animated wrappers for Drei components

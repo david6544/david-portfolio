@@ -14,11 +14,14 @@ export default function StarField({
   count = 20000,
   radius = 1,
   opacity = 1,
+  speedX = 0.008,
+  speedY = 0.008,
 }: {
   count?: number
   radius?: number
   opacity?: number | SpringValue<number>
-  speed?: number
+  speedX?: number
+  speedY?: number
 }) {
   const ref = useRef<THREE.Points>(null!)
 
@@ -41,8 +44,8 @@ export default function StarField({
   }, [count])
 
   useFrame((state, delta) => {
-    ref.current.rotation.y += delta * 0.08
-    ref.current.rotation.x += delta * 0.01
+    ref.current.rotation.y += delta * speedX
+    ref.current.rotation.x += delta * speedY
   })
 
   // Center the camera while this starfield is mounted, restore on unmount
@@ -74,6 +77,7 @@ export default function StarField({
         count={colors.length / 3}
         array={colors}
         itemSize={3}
+        args={[colors, 3]}
         args={[colors, 3]}
       />
     </AnimatedPoints>
