@@ -19,8 +19,10 @@ export default function BlogEntry({ post }: { post: BlogPost }) {
 
   return (
     <article className={styles.blogPost}>
-      <h1>{post.title}</h1>
-      {post.date && <time className={styles.date}>{post.date}</time>}
+      <header className={styles.header}>
+        <h1 className={styles.title}>{post.title}</h1>
+        {post.date && <time className={styles.date}>{post.date}</time>}
+      </header>
       <div className={styles.meta}>
         {post.tags?.map((t) => (
           <span key={t} className={styles.tag}>#{t}</span>

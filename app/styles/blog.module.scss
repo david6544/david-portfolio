@@ -19,8 +19,8 @@
   border: 2px solid white;
   padding: 1.5rem;
   border-radius: 0.5rem;
-  width: 880px;
-  max-width: calc(100% - 3rem);
+  width: 100%;
+  max-width: 880px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
@@ -95,8 +95,10 @@
 }
 
 .title {
-  font-size: 1.125rem;
+  font-size: 48px;
   margin: 0;
+  min-width: 0; /* allow flex children to shrink and wrap */
+  overflow-wrap: anywhere;
 }
 
 .date {
@@ -125,11 +127,11 @@
 .paragraph {
   margin: 0 0 0.75rem 0;
   line-height: 1.6;
-  color: rgb(167, 103, 103);
+  color: rgba(255,255,255,0.9);
 }
 
 .excerpt {
-  color: red;
+  color: var(--muted);
 }
 
 .footer {
@@ -143,4 +145,55 @@
   cursor: pointer;
   font-weight: 600;
   padding: 0;
+}
+
+/* make images responsive inside posts */
+.content img,
+.entry img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.75rem 0;
+}
+
+/* touch-friendly adjustments and responsive layout */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .layout {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+
+  .postButton {
+    padding: 12px;
+    min-height: 44px; /* recommended touch target */
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  .postList {
+    gap: 10px;
+    max-height: 40vh;
+    overflow: auto;
+    padding-right: 4px;
+  }
+
+  .entry {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
 }

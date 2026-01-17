@@ -184,9 +184,15 @@
   .card {
     flex-direction: column;
     align-items: center;
+    /* Keep the modal slightly narrower than the viewport on mobile */
+    width: min(94vw, 500px);
   }
   .photoSlot {
-    width: 160px;
-    height: 180px;
+    /* Make the showcase nearly as wide as the mobile screen
+       while keeping a square aspect ratio so the model scales nicely. */
+    width: min(92vw, 420px);
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 8px;
   }
 }

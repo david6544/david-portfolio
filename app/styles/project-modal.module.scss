@@ -153,5 +153,18 @@
   .dialog {
     width: calc(100% - 32px);
     max-width: none;
+    margin: 0 16px;
+    padding: 16px;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  /* Make main image more compact on small screens */
+  .mainImageWrapper {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
   }
 }

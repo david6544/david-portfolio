@@ -53,7 +53,6 @@ export default function AboutModal({
         <div className={styles.info}>
           <div className={styles.headerRow}>
             <h2 id="idcard-title" className={styles.name}>{name}</h2>
-            <button className={styles.closeButton} aria-label="Close">✕</button>
           </div>
 
           {renderedDescription && <p className={styles.desc}>{renderedDescription}</p>}
